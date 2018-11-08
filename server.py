@@ -35,7 +35,7 @@ def resize(size,image_content,mime_type):
         wsize = int((float(img.size[0]) * float(hpercent)))
         img = img.resize((wsize, height), Image.ANTIALIAS)
     tmp_img = BytesIO()
-    img.save(tmp_img,mime_type)
+    img.save(tmp_img,format='JPEG',quality=85)
     return tmp_img
 
 # Routes
