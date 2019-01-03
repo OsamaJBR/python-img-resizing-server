@@ -11,7 +11,7 @@ $ docker run -p5000:5000 -it image-resizer
 $ curl -XGET 'http://localhost:3000/resize?url=https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg&size=500x500' 
 ```
 
-### PARAMS
+### Params
 ```
 use_default = 0 return error code if anything wrong happens.
             = 1 return default image for arabiaweather ( =1 is the default value)
