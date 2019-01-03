@@ -15,7 +15,7 @@ $ curl -XGET 'http://localhost:3000/resize?url=https://images.pexels.com/photos/
 ### Params
 ```
 use_default = 0 return error code if anything wrong happens.
-            = 1 return default image for arabiaweather ( =1 is the default value)
+            = 1 return no-image.png resized ( =1 is the default value)
 
 size        = widthxheight, integers only
 
