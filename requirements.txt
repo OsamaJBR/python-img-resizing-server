@@ -1,5 +1,5 @@
 Pillow
-uwsgi
+gunicorn
 Image
 Flask
 configparser
