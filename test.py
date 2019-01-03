@@ -14,9 +14,13 @@ class BasicTests(unittest.TestCase):
     def tearDown(self):
         pass
  
-    def test_main_page(self):
+    def test_resize_route(self):
         response = self.app.get('/resize?url=https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg&size=500x500', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
  
+    def test_root_route(self):
+        response = self.app.get('/', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
 if __name__ == "__main__":
     unittest.main()

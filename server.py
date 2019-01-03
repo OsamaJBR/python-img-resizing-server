@@ -102,7 +102,7 @@ def resize(size,image_content):
     return img
 
 # Routes
-@app.route('/resize', methods=['POST','GET'])
+@app.route('/resize', methods=['GET'])
 def resize_route():
     use_default =int(request.args.get('use_default',1))    
     size=request.args.get('size','300x300')
@@ -156,6 +156,14 @@ def resize_route():
                 img,
                 mimetype=content_type
             )
+
+@app.route('/', methods=['GET'])
+def root_route():
+    return send_file(
+        'README.md',
+        mimetype = 'text/plain'
+    )
+
 # Main
 if __name__ == '__main__':
     app.run(
