@@ -2,6 +2,7 @@ from flask import Flask,request,send_file,jsonify
 from urllib.parse import urlparse
 from io import BytesIO
 from PIL import Image
+from configparser import SafeConfigParser
 import requests
 import hashlib
 import time
@@ -12,11 +13,14 @@ import os
 # Flask App
 app = application = Flask(__name__)
 
+# Config
+config = SafeConfigParser()
+config.read("config.ini")
+allowed_extensions = config.get('resizer','allowed_types').split(',')
+allowed_domains = config.get('resizer','allowed_domains').split(',')
+
 # For very large images
-Image.MAX_IMAGE_PIXELS = 1000000
-# Allowed image types
-allowed_extensions = ['image/png', 'image/jpeg', 'image/gif']
-allowed_domains = ['your-domain.com']
+Image.MAX_IMAGE_PIXELS = 10000000
 
 # Functions
 def get_filename_from_cd(cd):
@@ -122,7 +126,7 @@ def resize_route():
     if response.status_code != 200 and not use_default:
         return jsonify({'error' : 'wrong url'}),400
     elif response.status_code != 200 and use_default:
-        with open('./no-image.jpg', 'rb') as defaultImage:
+        with open(config.get('resizer','no_image_path'), 'rb') as defaultImage:
             image = defaultImage.read()
         content_type = 'image/jpeg'
     else:

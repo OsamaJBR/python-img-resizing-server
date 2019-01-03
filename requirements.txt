@@ -2,3 +2,5 @@ Pillow
 uwsgi
 Image
 Flask
+configparser
+requests
