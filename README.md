@@ -1,4 +1,5 @@
 # Image Resizing Server
+[![Build Status](https://travis-ci.org/OsamaJBR/python-img-resizing-server.svg?branch=master)](https://travis-ci.org/OsamaJBR/python-img-resizing-server) 
 
 ### Build & Run
 ```
