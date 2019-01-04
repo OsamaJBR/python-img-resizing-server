@@ -9,7 +9,7 @@ $ docker run -p5000:5000 -it image-resizer
 
 ### Test it
 ```
-$ curl -XGET 'http://localhost:3000/resize?url=https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg&size=500x500' 
+$ curl -XGET 'https://img-resizer-srv.herokuapp.com/resize?url=https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg&size=500x500' 
 ```
 
 ### Params
