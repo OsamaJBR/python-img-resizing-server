@@ -44,9 +44,13 @@ def is_downloadable(url):
     '''
     Does the url contain a downloadable resource
     '''
-    h = requests.head(url, allow_redirects=True)
-    header = h.headers
-    content_type = header.get('content-type')
+    try:
+        h = requests.head(url, allow_redirects=True)
+        header = h.headers
+        content_type = header.get('content-type')
+    except Exception as e:
+        return False
+        
     if 'text' in content_type.lower():
         return False
     if 'html' in content_type.lower():
@@ -114,22 +118,19 @@ def resize_route():
     if not image_url:
         return jsonify({'error' : 'missing param \'url\''}),400
     
-    if not is_downloadable(image_url) and not use_default:
-        return jsonify({'error' : 'url does not have downloadable media'}),400
-    
     if get_domain_from_url(image_url) not in allowed_domains:
         return jsonify({'error' : 'only images from allowed soruce should be used.'}),400
 
-    response = requests.get(image_url,stream=True,allow_redirects=True)
-    image = b'' 
-    
-    if response.status_code != 200 and not use_default:
-        return jsonify({'error' : 'wrong url'}),400
-    elif response.status_code != 200 and use_default:
-        with open(config.get('resizer','no_image_path'), 'rb') as defaultImage:
-            image = defaultImage.read()
-        content_type = 'image/jpeg'
-    else:
+    image = b''
+    if not is_downloadable(image_url):
+        if not use_default: 
+            return jsonify({'error' : 'url does not have downloadable media'}),400
+        else: 
+            with open('./no-image.jpg', 'rb') as defaultImage:
+                image = defaultImage.read()
+                content_type = 'image/jpeg'
+    if not image:
+        response = requests.get(image_url,stream=True,allow_redirects=True)
         image = response.content
         content_type = response.headers['Content-Type']
 
