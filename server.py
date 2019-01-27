@@ -105,7 +105,7 @@ def resize(size,image_content):
 # Routes
 @app.route('/resize', methods=['GET'])
 def resize_route():
-    use_default =int(request.args.get('use_default',1))    
+    use_default =int(request.args.get('use_default',1))
     size=request.args.get('size','300x300')
     crop_type=request.args.get('crop_type','middle')
     crop = int(request.args.get('crop',1))
@@ -137,7 +137,6 @@ def resize_route():
         return jsonify({'error' : 'url does not have content type: image/*'}),400
     
     if force_jpg and image_type not in ['gif']: image_type = 'jpeg'
-    
     with BytesIO(image) as fp:
         desired_size = []
         desired_size.append(int(size.split("x")[0]))
