@@ -4,11 +4,7 @@ from io import BytesIO
 from PIL import Image
 from configparser import SafeConfigParser
 import requests
-import hashlib
-import time
-import sys
 import re
-import os
 
 # Flask App
 app = application = Flask(__name__)
@@ -49,6 +45,7 @@ def is_downloadable(url):
         header = h.headers
         content_type = header.get('content-type')
     except Exception as e:
+        print('Error: Getting URL Failed. URL=%s' %url + '\n Error:: %s' %str(e))
         return False
         
     if 'text' in content_type.lower():
@@ -112,7 +109,7 @@ def resize_route():
     size=request.args.get('size','300x300')
     crop_type=request.args.get('crop_type','middle')
     crop = int(request.args.get('crop',1))
-    force_jpg = int(request.args.get('force_jpg', 0))    
+    force_jpg = int(request.args.get('force_jpg', 0))
     image_url = request.args.get('url')
     
     if not image_url:
@@ -123,9 +120,9 @@ def resize_route():
 
     image = b''
     if not is_downloadable(image_url):
-        if not use_default: 
+        if not use_default:
             return jsonify({'error' : 'url does not have downloadable media'}),400
-        else: 
+        else:
             with open('./no-image.jpg', 'rb') as defaultImage:
                 image = defaultImage.read()
                 content_type = 'image/jpeg'
