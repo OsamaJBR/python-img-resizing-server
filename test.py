@@ -1,6 +1,5 @@
-import os
-import unittest
 from server import app
+import unittest
 
 
 class BasicTests(unittest.TestCase):
