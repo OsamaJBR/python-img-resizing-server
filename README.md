@@ -1,4 +1,5 @@
 # Image Resizing Server
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7609fd0ce82e407783d9b6c22ead18b2)](https://app.codacy.com/app/OsamaJBR/python-img-resizing-server?utm_source=github.com&utm_medium=referral&utm_content=OsamaJBR/python-img-resizing-server&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/OsamaJBR/python-img-resizing-server.svg?branch=master)](https://travis-ci.org/OsamaJBR/python-img-resizing-server) 
 
 ## Build & Run
