@@ -1,18 +1,18 @@
 # Image Resizing Server
 [![Build Status](https://travis-ci.org/OsamaJBR/python-img-resizing-server.svg?branch=master)](https://travis-ci.org/OsamaJBR/python-img-resizing-server) 
 
-### Build & Run
-```
+## Build & Run
+```bash
 $ docker build -f Dockerfile -t image-resizer .
 $ docker run -p5000:5000 -it image-resizer
 ```
 
-### Test it
-```
+## Test it
+```bash
 $ curl -XGET 'https://img-resizer-srv.herokuapp.com/resize?url=https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg&size=500x500' 
 ```
 
-### Params
+## Params
 ```
 use_default = 0 return error code if anything wrong happens.
             = 1 return no-image.png resized ( =1 is the default value)
