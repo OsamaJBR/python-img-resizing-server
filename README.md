@@ -28,7 +28,7 @@ crop_type   = middle (default)
             = bottom
 
 force_jpg   = 0 reserve the type of the image
-            = 1 change the type to jpg
+            = 1 change the type to jpg 
 
 image_url   = url of the source image ( domain should be listed in allowed_domains in server.py file)
 ```
